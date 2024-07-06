@@ -1,10 +1,11 @@
-FROM node:10-alpine
-RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
-WORKDIR /home/node/
-COPY *.json ./
-USER node
-RUN npm install
-COPY --chown=node:node . .
-EXPOSE 8080
-CMD [ "node", "install", "express"]
-CMD [ "node", "app.js" ]
+# Use the official Nginx image from the Docker Hub
+FROM nginx:alpine
+
+# Copy a simple HTML file to the Nginx server directory
+COPY index.html /usr/share/nginx/html/
+
+# Expose port 80 to the outside world
+EXPOSE 80
+
+# Start Nginx when the container has started
+CMD ["nginx", "-g", "daemon off;"]
