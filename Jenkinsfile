@@ -27,7 +27,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script{
-                        docker.withRegistry('https://910118123647.dkr.ecr.ap-south-1.amazonaws.com/nodewithjenkins', 'ecr:ap-south-1:guri') {
+                        docker.withRegistry('910118123647.dkr.ecr.ap-south-1.amazonaws.com/underwater', 'ecr:ap-south-1:guri') {
                     app.push("${env.BUILD_NUMBER}")
                     app.push("latest")
                     }
